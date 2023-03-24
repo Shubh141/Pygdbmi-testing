@@ -16,20 +16,21 @@ def main():
 
     while True:
         # Execute one step
-        response = gdb.write('-exec-next')[0]
-        print(response)
+        response = gdb.write('-exec-next', timeout_sec=0.01)[0]
 
         if 'reason' in response and response['reason'] in ['exited', 'exited-normally', 'signal-received']:
             print("Program finished.")
             break
 
         # Print local variables
-        locals_response = gdb.write('-stack-list-locals 0')[0]['payload']
+        locals_response = gdb.write('-stack-list-locals 1', timeout_sec=0.01)[0]['payload']
+
         if 'locals' in locals_response:
             locals_data = locals_response['locals']
 
             print("Local variables at step:")
             for local in locals_data:
+                
                 print(f"{local['name']} = {local['value']}")
 
     # Exit GDB
