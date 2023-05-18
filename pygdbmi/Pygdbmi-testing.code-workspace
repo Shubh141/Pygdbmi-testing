@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "SSH FS - cse",
+			"uri": "ssh://cse/import/adams/2/z5418458"
+		}
+	],
+	"settings": {}
+}
